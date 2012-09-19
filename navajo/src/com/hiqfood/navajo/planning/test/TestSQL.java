@@ -1,4 +1,4 @@
-//demo connect sql
+ 
 package com.hiqfood.navajo.planning.test;
 
 import java.util.*;
