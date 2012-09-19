@@ -1,0 +1,24 @@
+<?page title="Test MS JDBC" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Test MS JDBC" border="normal" apply="com.hiqfood.navajo.planning.test.TestSQL">
+	<button id="aButton" label="Click Me"/>
+	<listbox id="poListbox" emptyMessage="No PO found in the result">
+		<listhead>
+	        <listheader label="No. Series" />
+	        <listheader label="No." />
+	        <listheader label="Item"/>
+	        <listheader label="Description"/>
+	        <listheader label="Quantity"/>
+	    </listhead>
+	    <template name="model">
+	        <listitem>
+	            <listcell label="${each.no_Series}"></listcell>
+	            <listcell label="${each.no_}"></listcell>
+	            <listcell label="${each.sourceNo_}"></listcell>
+	            <listcell label="${each.description}"></listcell>
+	            <listcell label="${each.quantity}"></listcell>
+	        </listitem>
+	    </template>
+	</listbox>
+</window>
+</zk>

@@ -1,0 +1,62 @@
+<?page title="Production Planning" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style dynamic="true">
+	.box {
+		border: 1px black solid;
+	}
+
+	div.s-plansheet div.z-vlayout-inner div.z-hlayout div.z-hlayout-inner div.z-vlayout div.z-vlayout-inner div {
+		background: #F0E68C;
+		border: 1px black dotted;
+		padding: 0px, 0px, 0px, 0px;
+		margin: 0px, 0px, 0px, 0px;
+	}
+</style>
+
+<zscript><![CDATA[
+    String[] Days = {"M", "T", "W", "TH", "F", "S", "SU"};
+]]></zscript>
+
+<window title="Production Planning" border="normal" height="100%"
+		apply="com.hiqfood.navajo.planning.PlanningCtlr">
+	<tabbox height="100%">	
+		<tabs>
+			<tab label="Plans" />
+			<tab label="WIP" />
+			<tab label="R/M" />
+		</tabs>
+		<toolbar>
+		<label value="29/8/2555"/>
+		</toolbar>
+		<tabpanels>
+			<tabpanel>
+			<vlayout sclass="s-plansheet" vflex="1">
+				<hlayout>
+					<div sclass="box" hflex="1" forEach="${Days}">${each}</div>
+				</hlayout>
+				<hlayout vflex="1">
+					<vlayout sclass="box" hflex="1" vflex="1">
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+						<div>1</div>
+					</vlayout>
+					<vlayout hflex="1" vflex="1"/>
+					<vlayout hflex="1" vflex="1"/>
+					<vlayout hflex="1" vflex="1"/>
+					<vlayout hflex="1" vflex="1"/>
+					<vlayout hflex="1" vflex="1"/>
+					<vlayout hflex="1" vflex="1"/>
+				</hlayout>
+			</vlayout>
+		</tabpanel>
+			<tabpanel>WIP Requirements</tabpanel>
+			<tabpanel>R/M Requirements</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>
+</zk>

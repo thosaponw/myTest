@@ -1,0 +1,24 @@
+<?page title="August schedule" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<zscript><![CDATA[
+    String[] Days = {"M", "T", "W", "TH", "F", "S", "SU"};
+    Integer[] OneToFive = {1,2,3,4,5};
+    Integer[] OneToSeven = {1,2,3,4,5,6,7};
+]]></zscript>
+
+<window title="August" border="normal">
+	<grid>
+		<columns sizable="true">
+            <column label="${each}" forEach="${Days}"/>
+        </columns>
+        <rows height="100px">
+	        <row id="w${each}" forEach="${OneToFive}">
+	        	<div forEach="${OneToSeven}">
+	        		<label value="d${forEachStatus.previous.index*7+each}"/>
+	        	</div>
+	        </row>
+	   </rows>
+	</grid>
+</window>
+</zk>

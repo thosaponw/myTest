@@ -1,0 +1,97 @@
+<?page title="Production Planning" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<style dynamic="true">
+	.s-planheader {
+		display: block;
+		text-align: center;
+	}
+
+	.s-dayplan {
+		background: #F0F0D0;
+		border: 1px gray dotted;
+		padding-left: 8px;
+		padding-right: 4px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		margin: 2px 4px 2px 2px; 
+	}
+
+	.s-dayplan:hover {
+		background: #FFFF00;
+		border: 1px black solid;
+	}
+	
+	.s-dayplan .z-label {
+		font-size: 11px;
+	}
+
+	.s-sourceNo_ {
+		font-weight: bold;
+	}
+
+	.s-weeklabel {
+		display: block;
+		font-size: 14px;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+	
+	.s-rangelabel {
+		display: block;
+		width: 220px;
+		text-align: center;
+		margin-bottom: 4px;
+		/* background: #F0F0D0; */
+	}
+</style>
+
+<zscript><![CDATA[
+    String[] Days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+]]></zscript>
+
+<window title="Production Planning" border="normal" height="100%"
+		apply="org.zkoss.bind.BindComposer" 
+		viewModel="@id('vm') @init('com.hiqfood.navajo.planning.WeekPlanningVM')">
+	<borderlayout>
+		<north border="none">
+			<vlayout>
+				<label sclass="s-weeklabel" value="@load(c:cat4('Week: ', vm.week, '/', vm.year))"/>
+				<hlayout>
+					<button image="/icons/10/132.png" onClick="@command('MovePrev')"/>
+					<label sclass="s-rangelabel" value="@load(vm.range))"/>
+					<button image="/icons/10/131.png" onClick="@command('MoveNext')"/>
+				</hlayout>
+			</vlayout>
+		</north>
+		<west width="15%" splittable="true" collapsible="true" autoscroll="true">
+		</west>
+		<center>
+			<borderlayout>
+				<north border="none" margins="0,0,0,6">
+				<hlayout>
+ 					<label sclass="s-planheader" hflex="1" forEach="${Days}" value="${each}"/>
+				</hlayout>
+				</north>
+				<center autoscroll="true" border="none">
+				<hlayout children="@load(vm.weekplans)">
+					<template name="children" var="dayplans">
+						<vlayout hflex="1" children="@load(dayplans)">
+							<template name="children" var="plan">
+								<vlayout sclass="s-dayplan" hflex="1">
+									<hlayout hflex="1">
+										<label sclass="s-sourceNo_" value="@load(plan.sourceNo_)"/>
+										<hbox hflex="1" pack="end"><label sclass="s-quantity" value="@load(plan.quantity)"/></hbox>
+									</hlayout>
+									<label value="@load(plan.no_)"/>
+								</vlayout>
+							</template>
+						</vlayout>
+					</template>
+				</hlayout>
+				</center>
+			</borderlayout>
+	</center>
+	</borderlayout>
+</window>
+</zk>
